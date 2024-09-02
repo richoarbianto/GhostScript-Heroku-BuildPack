@@ -27,9 +27,6 @@ cd $TEMP_DIR/ghostpdl-10.03.1
 echo "-----> Configuring Ghostscript"
 ./configure --prefix=$LOCATION
 
-echo "-----> Building Ghostscript"
-make
-
 echo "-----> Installing Ghostscript"
 make install
 
