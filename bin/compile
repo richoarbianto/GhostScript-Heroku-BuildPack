@@ -4,7 +4,7 @@
 echo "-----> Installing Ghostscript 9.20 using build directory $1"
 
 BUILD_DIR=$1
-PACKAGE="https://github.com/ArtifexSoftware/ghostpdl-downloads/releases/download/gs920/ghostpcl-9.20-linux-x86_64.tgz"
+PACKAGE="https://github.com/ArtifexSoftware/ghostpdl-downloads/releases/download/gs10031/ghostscript-10.03.1.tar.gz"
 BINARY="ghostpcl-9.20-linux-x86_64/gpcl6-920-linux_x86_64"
 LOCATION="$BUILD_DIR/vendor/gs"
 
