@@ -1,0 +1,4 @@
+echo '#!/bin/sh
+echo "ghostscript"
+exit 0' > bin/detect
+chmod +x bin/detect
