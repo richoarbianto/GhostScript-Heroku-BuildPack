@@ -1,10 +1,31 @@
-#!/bin/sh
+#!/usr/bin/env bash
+# bin/compile <build-dir> <cache-dir>
+
+echo "-----> Installing Ghostscript 10.03.1 using build directory $1"
 
 BUILD_DIR=$1
+PACKAGE="https://github.com/ArtifexSoftware/ghostpdl-downloads/releases/download/gs10031/ghostpdl-10.03.1.tar.gz"
+BINARY_DIR="/tmp/ghostpdl-10.03.1/bin"
+LOCATION="$BUILD_DIR/vendor/gs"
 
-echo "Installing Ghostscript..."
-curl -fsSL https://github.com/ArtifexSoftware/ghostpdl-downloads/releases/download/gs10031/ghostpdl-10.03.1.tar.gz | tar -xz -C /tmp
-mkdir -p $BUILD_DIR/ghostscript
-cp -r /tmp/ghostpdl-10.03.1/* $BUILD_DIR/ghostscript/
+# Create the necessary directories
+mkdir -p $BUILD_DIR
+mkdir -p $LOCATION/bin
 
-echo "Ghostscript installation completed."
+# Download and extract the package
+echo "-----> Downloading Ghostscript package"
+wget -O /tmp/ghostpdl.tar.gz $PACKAGE
+
+echo "-----> Extracting Ghostscript package"
+tar -xzf /tmp/ghostpdl.tar.gz -C /tmp
+
+# Move binaries to the location
+echo "-----> Moving Ghostscript binaries"
+cp -r $BINARY_DIR/* $LOCATION/bin/
+
+# Setup PATH environment variable
+echo "-----> Building runtime environment for Ghostscript"
+mkdir -p $BUILD_DIR/.profile.d
+echo "export PATH=\"$BUILD_DIR/vendor/gs/bin:\$PATH\"" > $BUILD_DIR/.profile.d/ghostscript.sh
+
+echo "-----> Ghostscript installation completed"
