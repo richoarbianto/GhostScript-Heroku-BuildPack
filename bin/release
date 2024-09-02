@@ -1,0 +1,3 @@
+echo '#!/bin/sh
+echo "version: v1"' > bin/release
+chmod +x bin/release
